@@ -1,0 +1,43 @@
+<!-- frontend/views/products.ejs -->
+
+<section class="container my-5">
+  <h2 class="text-center mb-4">Nuestros Productos</h2>
+  <div class="row">
+    <% products.forEach(product => { %>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100">
+          <!-- Imagen del producto -->
+          <img 
+            src="<%= product.imageUrl || '/images/default-product.jpg' %>" 
+            alt="<%= product.name %>" 
+            class="card-img-top" 
+            style="max-height: 200px; object-fit: cover;">
+          
+          <div class="card-body d-flex flex-column">
+            <!-- Nombre del producto -->
+            <h5 class="card-title"><%= product.name %></h5>
+
+            <!-- Precio del producto -->
+            <p class="card-text text-success">
+              <strong>$<%= product.price ? product.price.toFixed(2) : 'N/A' %></strong>
+            </p>
+
+            <!-- Enlace para ver detalles -->
+            <a href="/products/detail/<%= product._id %>" class="btn btn-primary mb-2">Ver Producto</a>
+
+            <!-- Ver ubicación en el mapa -->
+            <% if (product.location && product.location.coordinates) { %>
+              <a 
+                href="/products/location/<%= product._id %>" 
+                class="btn btn-outline-secondary">
+                Ver Ubicación
+              </a>
+            <% } else { %>
+              <p class="text-muted mt-2">Ubicación no disponible</p>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+  </div>
+</section>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Ecomerse-Soft</title>
+  <!-- Importamos Bootstrap para estilización -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/register.css"> 
+</head>
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+      <div class="container">
+        <!-- Logo y nombre del sitio -->
+        <a class="navbar-brand d-flex align-items-center" href="/">
+          <img src="/images/logo.webp" alt="Ecomerse-Soft" style="height: 50px; width: auto; margin-right: 10px;">
+          <span class="text-success fw-bold">Ecomerse-Soft</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="register-card">
+    <!-- Header con imagen -->
+    <div class="register-header"></div>
+
+    <!-- Icono de perfil -->
+    <div class="profile-icon">
+      <img src="/images/perfil.jpg" alt="Usuario">
+    </div>
+        <!-- Formulario -->
+        <div class="p-4">
+          <h3 class="text-center mb-4">Registro</h3>
+          <form id="registerForm">
+            <!-- Nombre completo -->
+            <div class="mb-3">
+              <input type="text" class="form-control" id="name" placeholder="Nombre Completo" required>
+            </div>
+            <!-- Correo -->
+            <div class="mb-3">
+              <input type="email" class="form-control" id="email" placeholder="Correo Electrónico" required>
+            </div>
+            <!-- Contraseña -->
+            <div class="mb-3">
+              <input type="password" class="form-control" id="password" placeholder="Contraseña" required>
+            </div>
+            <!-- Confirmar contraseña -->
+            <div class="mb-3">
+              <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmar Contraseña" required>
+            </div>
+            <!-- Fecha de nacimiento -->
+            <div class="mb-3">
+              <input type="date" class="form-control" id="birthdate" required>
+            </div>
+            <!-- Documento de identidad -->
+            <div class="mb-3">
+              <input type="text" class="form-control" id="document" placeholder="Documento de Identidad" required>
+            </div>
+            <!-- Dirección -->
+            <div class="mb-3">
+              <input type="text" class="form-control" id="address" placeholder="Dirección" required>
+            </div>
+            <!-- Ciudad -->
+            <div class="mb-3">
+              <input type="text" class="form-control" id="city" placeholder="Ciudad" required>
+            </div>
+            <!-- Estado o departamento -->
+            <div class="mb-3">
+              <input type="text" class="form-control" id="state" placeholder="Departamento" required>
+            </div>
+            <!-- País -->
+            <div class="mb-3">
+              <input type="text" class="form-control" id="country" value="Colombia" disabled>
+            </div>
+            <!-- Ocupación -->
+            <div class="mb-3">
+              <input type="text" class="form-control" id="occupation" placeholder="Ocupación" required>
+            </div>
+            <!-- Teléfono -->
+            <div class="mb-3">
+              <input type="tel" class="form-control" id="phone" placeholder="Teléfono" required>
+            </div>
+            <!-- Género -->
+            <div class="mb-3">
+              <select class="form-select" id="gender" required>
+                <option value="">Seleccione su Género</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Femenino">Femenino</option>
+                <option value="Otro">Otro</option>
+                <option value="Prefiero no decirlo">Prefiero no decirlo</option>
+              </select>
+            </div>
+            <!-- Términos -->
+            <div class="form-check mb-4">
+              <input class="form-check-input" type="checkbox" id="terms" required>
+              <label class="form-check-label" for="terms">
+                Acepto los <a href="#">términos y condiciones</a>.
+              </label>
+            </div>
+            <!-- Botón de registro -->
+            <button type="submit" class="btn btn-submit w-100">Registrarse</button>
+          </form>
+        </div>
+      </div>
+    
+      <!-- Script de registro -->
+      <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+          e.preventDefault();
+    
+          const formData = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            password: document.getElementById('password').value,
+            confirmPassword: document.getElementById('confirmPassword').value,
+            birthdate: document.getElementById('birthdate').value,
+            documentId: document.getElementById('document').value,
+            address: document.getElementById('address').value,
+            city: document.getElementById('city').value,
+            state: document.getElementById('state').value,
+            occupation: document.getElementById('occupation').value,
+            phone: document.getElementById('phone').value,
+            gender: document.getElementById('gender').value,
+          };
+    
+          if (formData.password !== formData.confirmPassword) {
+            alert("Las contraseñas no coinciden.");
+            return;
+          }
+    
+          try {
+            const response = await fetch('/api/users/register', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(formData),
+            });
+    
+            const result = await response.json();
+            if (response.ok) {
+              alert("Registro exitoso.");
+              window.location.href = '/';
+            } else {
+              alert(result.error || "Error en el registro.");
+            }
+          } catch (error) {
+            console.error("Error en el registro:", error);
+            alert("Ocurrió un error inesperado.");
+          }
+        });
+      </script>
+    </body>
+    </html>

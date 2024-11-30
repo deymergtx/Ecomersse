@@ -1,0 +1,94 @@
+/* Contenedor principal del login */
+.login-container {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Caja principal del login */
+.login-box {
+  display: flex;
+  width: 800px;
+  height: 500px; /* Ajuste de altura para que la imagen cubra todo el espacio */
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Sección del formulario de login */
+.login-form {
+  padding: 40px;
+  background-color: #fff;
+  width: 50%;
+}
+
+.login-form h2 {
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.login-form input {
+  border: 2px solid #28a745; /* Borde verde más llamativo */
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 10px;
+  transition: border-color 0.3s ease; /* Transición suave para el cambio de borde */
+}
+
+.login-form input:focus {
+  border-color: #1e7e34; /* Cambiar a un verde más oscuro al hacer foco */
+  outline: none; /* Eliminar el contorno azul predeterminado */
+}
+
+/* Sección de la imagen de login */
+.login-image {
+  width: 50%;
+  background: url('/images/logo.webp') no-repeat center center; /* Asegúrate de que la ruta sea correcta */
+  background-size: cover; /* La imagen cubrirá toda el área */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.login-image::before {
+  content: ''; /* Quita el color morado */
+}
+
+.login-image .company-logo {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+}
+
+.login-image .company-logo img {
+  width: 120px; /* Ajuste de tamaño del logo si es necesario */
+}
+
+.login-image .company-logo h3 {
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+/* Botón de Iniciar Sesión (manteniendo el estilo verde) */
+.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: #fff;
+}
+
+/* Botón de Crear Cuenta */
+.btn-register {
+  background-color: #ffffff; /* Fondo blanco */
+  color: #205f35; /* Texto verde */
+  border: 2px solid #28a745; /* Borde verde */
+  margin-top: 15px; /* Margen superior para separación */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+.btn-register:hover {
+  background-color: #28a745; /* Fondo verde al pasar el mouse */
+  color: #ffffff; /* Texto blanco al pasar el mouse */
+}

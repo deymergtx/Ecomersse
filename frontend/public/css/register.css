@@ -1,0 +1,46 @@
+body {
+  background: linear-gradient(to bottom, #ffffff, #ffffff);
+  font-family: Arial, sans-serif;
+}
+
+.register-card {
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  max-width: 500px;
+  margin: 50px auto;
+  background: rgb(255, 255, 255);
+}
+
+.register-header {
+  background: url('/images/logo12.jpg') no-repeat center center / cover;
+  height: 150px;
+}
+
+.profile-icon {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -50px auto 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.profile-icon img {
+  width: 60px;
+}
+
+.btn-submit {
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  border-radius: 25px;
+  padding: 10px 20px;
+}
+
+.btn-submit:hover {
+  background-color: #43a047;
+}
